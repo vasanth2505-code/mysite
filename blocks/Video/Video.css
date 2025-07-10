@@ -1,0 +1,8 @@
+.block.video {
+  text-align: center;
+  padding: 1em;
+}
+.block.video iframe {
+  max-width: 100%;
+  border-radius: 8px;
+}
