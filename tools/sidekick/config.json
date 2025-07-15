@@ -4,7 +4,7 @@
     {
       "id": "google-assit",
       "title":"Google Assist",
-      "environment": ["edit","dev","preview","live","prod"],
+      "environment": ["edit","Development","Preview","Live","prod"],
       "url": "https://translate.google.com/?hl=ta&sl=auto&tl=ta&op=translate",
       "passConfig": true,
       "passReferrer": true,
