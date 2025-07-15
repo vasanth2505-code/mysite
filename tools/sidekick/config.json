@@ -1,18 +1,33 @@
 {
-  "project": "Aem Eds site",
+  "project": "AEM Eds training",
   "plugins": [
     {
-      "id": "asset-library",
-      "title": "My Assets",
-      "environments": [
-        "edit"
+      "id": "google-assit",
+      "title":"Google Assist",
+      "environment": ["edit","dev","preview","live","prod"],
+      "url": "https://translate.google.com/?hl=ta&sl=auto&tl=ta&op=translate",
+      "passConfig": true,
+      "passReferrer": true,
+      "excludePaths": [
+        "**/fr/**"
       ],
-      "url": "https://experience.adobe.com/solutions/CQ-assets-selectors/static-assets/resources/franklin/asset-selector.html",
-      "isPalette": true,
       "includePaths": [
-        "**.docx**"
-      ],
-      "paletteRect": "top: 50px; bottom: 10px; right: 10px; left: auto; width:400px; height: calc(100vh - 60px)"
+        "**/docx**",
+        "**/fr/blocks/**"
+      ]
+    },
+    {
+      "id": "tools",
+      "title":"Tools",
+      "isContainer": true
+    },
+    {
+      "containerId": "tools",
+      "id": "google-assit",
+      "title":"Google Assist",
+      "environment": ["edit","dev","preview","live","prod"],
+      "url": "https://translate.google.com/?hl=ta&sl=auto&tl=ta&op=translate",
+          "passReferrer": true
     }
   ]
 }
