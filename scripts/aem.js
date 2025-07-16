@@ -126,14 +126,6 @@ function sampleRUM(checkpoint, data) {
   }
 }
 
-
-function getMetadata(name, doc = document) {
-  const attr = name && name.includes(':') ? 'property' : 'name';
-  const meta = [...doc.head.querySelectorAll(`meta[${attr}="${name}"]`)]
-    .map((m) => m.content)
-    .join(', ');
-  return meta || '';
-}
 /**
  * Setup block utils.
  */
@@ -164,45 +156,6 @@ function init() {
   sampleRUM.collectBaseURL = window.origin;
   sampleRUM();
 }
-
-// eslint-disable-next-line import/prefer-default-export
-async function fetchPlaceholders(prefix = 'default') {
-  window.placeholders = window.placeholders || {};
-  console.log("window.placeholders",window.placeholders);
-  if (!window.placeholders[prefix]) {
-    window.placeholders[prefix] = new Promise((resolve) => {
-      console.log("===>",prefix)
-      let localizedURL = new URL(window.location.origin+"/"+prefix+"/placeholders.json");
-     
-      //console.log("prefix",prefix,(`${prefix === 'default' ? '' : prefix}/placeholders.json`));
-      //fetch(`${prefix === 'default' ? '' : prefix}/placeholders.json`)
-      fetch(localizedURL)
-        .then((resp) => {
-          if (resp.ok) {
-            return resp.json();
-          }
-          return {};
-        })
-        .then((json) => {
-          const placeholders = {};
-          json.data
-            .filter((placeholder) => placeholder.Key)
-            .forEach((placeholder) => {
-              placeholders[toCamelCase(placeholder.Key)] = placeholder.Text;
-            });
-          window.placeholders[prefix] = placeholders;
-          resolve(window.placeholders[prefix]);
-        })
-        .catch(() => {
-          // error loading placeholders
-          window.placeholders[prefix] = {};
-          resolve(window.placeholders[prefix]);
-        });
-    });
-  }
-  return window.placeholders[`${prefix}`];
-}
-
 
 /**
  * Sanitizes a string for use as class name.
